@@ -106,9 +106,9 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'XAISidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'XAI',
         },
         {
           type: 'docSidebar',
@@ -136,7 +136,7 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
+              label: 'XAI',
               to: '/docs/intro',
             },
           ],
