@@ -1,0 +1,12 @@
+.taskDate {
+  margin-top: 0.4rem;
+  margin-bottom: 1.1rem;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.9rem;
+}
+
+.taskDateNoTitle {
+  margin-bottom: 1.1rem;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.9rem;
+}

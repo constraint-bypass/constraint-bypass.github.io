@@ -42,6 +42,7 @@ const FeatureList: FeatureItem[] = [
   },
 ];
 
+
 function Feature({title, Svg, description}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>

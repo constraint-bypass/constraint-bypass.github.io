@@ -28,17 +28,29 @@ function sortVersionsDesc(a: string, b: string): number {
   return bBase.localeCompare(aBase);
 }
 
-function getDocIdFromFrontMatter(filePath: string): string {
-  const raw = fs.readFileSync(filePath, 'utf8');
+function parseFrontMatter(raw: string): string | null {
   const frontMatter = raw.match(/^---\n([\s\S]*?)\n---/);
+  return frontMatter ? frontMatter[1] : null;
+}
+
+function getFrontMatterValue(frontMatter: string, key: string): string | null {
+  const keyLine = frontMatter.match(new RegExp(`^${key}:\\s*(.+)$`, 'm'));
+  if (!keyLine) {
+    return null;
+  }
+  return keyLine[1].trim().replace(/^["']|["']$/g, '');
+}
+
+function getTaskMetaFromFrontMatter(filePath: string): {docId: string; order: number | null} {
+  const raw = fs.readFileSync(filePath, 'utf8');
+  const frontMatter = parseFrontMatter(raw);
   if (!frontMatter) {
-    return path.basename(filePath, '.md');
+    return {docId: path.basename(filePath, '.md'), order: null};
   }
-  const idLine = frontMatter[1].match(/^id:\s*(.+)$/m);
-  if (!idLine) {
-    return path.basename(filePath, '.md');
-  }
-  return idLine[1].trim().replace(/^["']|["']$/g, '');
+  const docId = getFrontMatterValue(frontMatter, 'id') ?? path.basename(filePath, '.md');
+  const orderValue = getFrontMatterValue(frontMatter, 'order');
+  const order = orderValue !== null ? Number(orderValue) : null;
+  return {docId, order: Number.isFinite(order) ? order : null};
 }
 
 const taskCategories = fs
@@ -51,11 +63,25 @@ const taskCategories = fs
     const items = fs
       .readdirSync(categoryPath, {withFileTypes: true})
       .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
-      .map((entry) => entry.name)
-      .sort(sortVersionsDesc)
-      .map((fileName) => {
+      .map((entry) => {
+        const fileName = entry.name;
         const filePath = path.join(categoryPath, fileName);
-        const docId = getDocIdFromFrontMatter(filePath);
+        const {docId, order} = getTaskMetaFromFrontMatter(filePath);
+        return {fileName, docId, order};
+      })
+      .sort((a, b) => {
+        if (a.order !== null && b.order !== null && a.order !== b.order) {
+          return a.order - b.order;
+        }
+        if (a.order !== null && b.order === null) {
+          return -1;
+        }
+        if (a.order === null && b.order !== null) {
+          return 1;
+        }
+        return sortVersionsDesc(a.fileName, b.fileName);
+      })
+      .map(({docId}) => {
         return `${categoryName}/${docId}`;
       });
 
