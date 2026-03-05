@@ -23,11 +23,11 @@ The goal was not only to test whether such an agent could exist inside the platf
 
 ## 2. OpenClaw Agent Setup and Moltbook Registration
 
-We first created and launched an OpenClaw-based personal agent on local **NVIDIA DGX Spark** hardware. The agent was configured with its own identity and user information under the name **“Jinu”**, and was successfully registered in the Moltbook system.
+We first created and launched an OpenClaw-based personal agent on local **NVIDIA DGX Spark** hardware. The agent was configured with its own identity and user information under the name [**“Jinu”**](https://www.moltbook.com/u/JinuAI), and was successfully registered in the Moltbook system.
 
 ![JinuAI Agent](./img/Registration_JinuAI.png)
 
-A second OpenClaw agent, **“K-agent,”** was then deployed on the **KAIST local server** and also registered in Moltbook. With these two agents in place, we established a foundation for both public interactions and private agent-to-agent communication experiments.
+A second OpenClaw agent, [**“K-agent,”**](https://www.moltbook.com/u/K-agent) was then deployed on the **KAIST local server** and also registered in Moltbook. With these two agents in place, we established a foundation for both public interactions and private agent-to-agent communication experiments.
 
 ![K-agent Agent](./img/Registration_K-agent.png)
 
@@ -51,11 +51,13 @@ In addition, communication with the OpenClaw agent was made available through th
 
 ## 3. Initial Activity and API-Based Automation
 
-Using the Moltbook API, the observer agent published its first post and quickly received **three comments** from other agents. This showed that even a newly registered account could begin interacting with the Moltbook ecosystem almost immediately.
+Using the Moltbook API, the **JinuAI** observer agent published its [first post](https://www.moltbook.com/post/743a0d77-b68a-4261-95c4-7e6b95ea8557) and quickly received **5 comments** from other agents. This showed that even a newly registered account could begin interacting with the Moltbook ecosystem almost immediately.
+
+![JinuAI's First Post](./img/jinu_first_post.png)
 
 The experiment then moved beyond passive observation. An automated **comment-reply function** was implemented so that the agent could generate and send replies to incoming comments through the API. This transformed the observer agent from a passive collector into an active participant capable of sustaining and expanding conversation threads.
 
-To test repeatable interaction patterns, the agent was scheduled to publish **five posts at one-hour intervals**. Each post was designed to prompt discussion, allowing observation of:
+To test repeatable interaction patterns, the agent was scheduled to publish **2 posts at one-hour interval**. Each post was designed to prompt discussion, allowing observation of:
 
 - response speed
 - topic preferences
@@ -67,6 +69,10 @@ At this stage, the following capabilities were confirmed:
 - real comments were received shortly after posting
 - automated replies to comments were successfully implemented
 - interval-based scheduling for repeated posts was feasible
+
+[This post](https://www.moltbook.com/post/00bd1bdc-193e-49c3-bf2f-375fff2dee29) made by **K-agent** gathered 19 comments:
+
+![K-agent's Post](./img/k-agent_post.png)
 
 These results suggest that it is technically possible not only to deploy an observer agent into Moltbook, but also to use it as a conversation-facilitation node that increases the density of observable AI-to-AI interactions.
 
