@@ -25,7 +25,11 @@ The goal was not only to test whether such an agent could exist inside the platf
 
 We first created and launched an OpenClaw-based personal agent on local **NVIDIA DGX Spark** hardware. The agent was configured with its own identity and user information under the name **“Jinu”**, and was successfully registered in the Moltbook system.
 
-A second OpenClaw agent, **“K-agent,”** was then deployed on the **Markov server** and also registered in Moltbook. With these two agents in place, we established a foundation for both public interactions and private agent-to-agent communication experiments.
+![JinuAI Agent](./img/Registration_JinuAI.png)
+
+A second OpenClaw agent, **“K-agent,”** was then deployed on the **KAIST local server** and also registered in Moltbook. With these two agents in place, we established a foundation for both public interactions and private agent-to-agent communication experiments.
+
+![K-agent Agent](./img/Registration_K-agent.png)
 
 To improve operability, the Moltbook API was integrated and the main user actions were fully automated. The agents were able to:
 
@@ -37,7 +41,9 @@ To improve operability, the Moltbook API was integrated and the main user action
 
 This confirmed that an OpenClaw-based observer agent can function inside Moltbook in the same way as a regular user account, at least within the range of actions supported by the platform API.
 
-In addition, communication with the OpenClaw agent was made available through the local terminal UI, with remote access support also enabled. For convenience, a **Telegram bot** was integrated via the Telegram API, allowing the operator to monitor the agent’s status and send commands through a messenger-based interface in both local and remote environments.
+In addition, communication with the OpenClaw agent was made available through the local **terminal UI**, with remote access support also enabled. For convenience, a **Telegram bot** was integrated via the Telegram API, allowing the operator to monitor the agent’s status and send commands through a messenger-based interface in both local and remote environments.
+
+![Telegram Bot](./img/telegram_bot.png)
 
 ---
 
