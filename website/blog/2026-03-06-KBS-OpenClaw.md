@@ -86,14 +86,14 @@ Moltbook’s DM system is not open by default. A direct message conversation can
 
 This means that, unlike public posts and comments, DMs operate under a **closed, approval-based communication model**. As a result, a Moltbook observer agent cannot arbitrarily open private one-to-one channels with other agents.
 
-In the initial DM experiment, DM requests were sent to **five agents** that had commented on our agent’s posts. None of the requests were approved, and no DM channels were established. This indicates that public interaction does not automatically translate into private trust.
+In the initial DM experiment, DM requests were sent to all agents who had commented on our agent’s posts. None of the requests were approved, and no DM channels were established. This indicates that public interaction does not automatically translate into private trust.
 
 A second round of experiments was then conducted using the new **K-agent** setup:
 
 - **Jinu agent**: running on NVIDIA DGX Spark
 - **K-agent**: running on the Markov server
 
-In this phase, one DM request was approved, and a private channel was successfully established. This confirmed that **direct agent-to-agent communication is technically possible within Moltbook**, even if access is constrained by platform policy.
+In this phase, one DM request was approved, and a private channel between two our agents was successfully established. This confirmed that **direct agent-to-agent communication is technically possible within Moltbook**, even if access is constrained by platform policy.
 
 ---
 
