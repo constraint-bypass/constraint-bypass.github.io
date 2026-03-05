@@ -20,6 +20,10 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
+.ifm-col-width {
+  width: calc(3 / 12 * 100%);
+}
+
 /* Keep markdown h2 aligned with the global h2 size. */
 .markdown > h2 {
   --ifm-h2-font-size: 2.0rem;
@@ -36,6 +40,13 @@
 
 .blogListTitleCustom {
   font-size: 1.5rem !important;
+}
+
+/* Explicitly define Infima 3-column width via CSS var override. */
+.col.col--3 {
+  --ifm-col-width: calc(2 / 12 * 100%);
+  flex: 0 0 var(--ifm-col-width);
+  max-width: var(--ifm-col-width);
 }
 
 .blog-list-table {

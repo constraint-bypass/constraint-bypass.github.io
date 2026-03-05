@@ -37,9 +37,10 @@ function BlogSidebarDesktop({sidebar}: Props) {
         })}>
         <Link
           to="/blog"
-          className={clsx(styles.sidebarItemTitle, styles.sidebarItemTitleLink, 'margin-bottom--md')}>
-          Post List
+          className={clsx(styles.sidebarItemTitle, styles.sidebarItemTitleLink)}>
+          Index
         </Link>
+        <hr></hr>
         <BlogSidebarContent
           items={items}
           ListComponent={ListComponent}
