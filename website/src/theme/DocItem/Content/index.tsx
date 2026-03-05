@@ -33,7 +33,9 @@ export default function DocItemContent({children}: Props): React.JSX.Element {
     <div className={clsx(ThemeClassNames.docs.docMarkdown, 'markdown')}>
       {syntheticTitle && (
         <header>
-          <Heading as="h1">{syntheticTitle}</Heading>
+          <Heading as="h1" className="docTitleCustom">
+            {syntheticTitle}
+          </Heading>
           {isTaskDoc && date ? <p className={styles.taskDate}>Date: {date}</p> : null}
         </header>
       )}

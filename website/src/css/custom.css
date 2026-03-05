@@ -22,11 +22,85 @@
 
 /* Keep markdown h2 aligned with the global h2 size. */
 .markdown > h2 {
-  --ifm-h2-font-size: 1.5rem;
+  --ifm-h2-font-size: 2.0rem;
 }
 
 .markdown > h3 {
   --ifm-h3-font-size: 1.25rem;
+}
+
+/* Custom class attached at render-time to avoid relying on hashed theme classes. */
+.docTitleCustom {
+  font-size: 1.5rem;
+}
+
+.blogListTitleCustom {
+  font-size: 1.5rem !important;
+}
+
+.blog-list-table {
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.blog-list-header,
+.blog-list-row {
+  display: grid;
+  grid-template-columns: 10rem minmax(0, 1fr) 10rem;
+  gap: 1rem;
+  align-items: center;
+}
+
+.blog-list-header {
+  padding: 0.7rem 0;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.blog-list-row-item {
+  margin: 0;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.blog-list-row {
+  padding: 0.85rem 0;
+}
+
+.blog-list-col-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.blog-list-col-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.blog-list-col-title a:hover {
+  text-decoration: underline;
+}
+
+.blog-list-col-date,
+.blog-list-col-author {
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 996px) {
+  .blog-list-header,
+  .blog-list-row {
+    grid-template-columns: 8rem minmax(0, 1fr);
+  }
+
+  .blog-list-header .blog-list-col-author,
+  .blog-list-row .blog-list-col-author {
+    display: none;
+  }
 }
 
 .markdown > h4 {
