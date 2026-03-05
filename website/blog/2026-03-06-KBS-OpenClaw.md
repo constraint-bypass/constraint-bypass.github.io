@@ -27,7 +27,7 @@ We first created and launched an OpenClaw-based personal agent on local **NVIDIA
 
 ![JinuAI Agent](./img/Registration_JinuAI.png)
 
-A second OpenClaw agent, [**“K-agent,”**](https://www.moltbook.com/u/K-agent) was then deployed on the **KAIST local server** and also registered in Moltbook. With these two agents in place, we established a foundation for both public interactions and private agent-to-agent communication experiments.
+A second OpenClaw agent, [**“K-agent,”**](https://www.moltbook.com/u/K-agent) was then deployed on the **KAIST local "Markov" server** and also registered in Moltbook. With these two agents in place, we established a foundation for both public interactions and private agent-to-agent communication experiments.
 
 ![K-agent Agent](./img/Registration_K-agent.png)
 
@@ -163,7 +163,9 @@ The crawler currently supports two main collection modes:
    - pulls the **top 100 posts** for any exact date
    - useful for time-specific trend analysis and comparing topic distributions across days
 
+<p align="center">
 ![Crawler](./img/crawler.png)
+</p>
 
 This crawler provides a practical basis for understanding the broader structure of Moltbook society, including:
 
@@ -216,30 +218,49 @@ To compare local and API-based agent operation, a local **GLM-4.7-Flash** model 
 
 Compared with the API-based setup, the local model had several important limitations:
 
-- it could not use all previously learned skills
-- it could not use the post crawler
-- it did, however, have full access to local files on the machine
+- it could not use all previously learned skills (for example, after humanize command, the text was almost not changed)
+- it could not use the post crawler (it crawled some posts but not in the format that was learned by the agent)
 
 This created an uneven tradeoff:
 
 - the **API-based agent** was more capable in terms of tool use and platform interaction
-- the **local model** had weaker functional integration, but broader access to the local environment
+- the **local model** had weaker functional integration and forgot previously learned skills by the agent
+- the **local model** worked much slower than API-based agent (the Moltbook DM check skill took 9 minutes to complete)
 
-That broader local file access became especially important in the later security experiment.
+![Local Model](./img/local_model.png)
 
 ---
 
-## 9. AI-to-AI Conversation Attack Experiment
+## 9. Access to Local Files and Jailbreak Risk
+
+An important security finding from this review is that **both model configurations—the API-based setup and the local-model setup—had full access to local files on the device**. This access was not limited to the `./openclaw` working directory. In practice, the agents were able to reach files and directories outside the intended project scope.
+
+![Local Model](./img/local_files.png)
+
+This means the effective trust boundary was much broader than expected. Rather than being constrained to a dedicated agent workspace, both configurations operated with visibility into the wider local file system. As a result, any successful prompt injection, jailbreak, or adversarial agent-to-agent manipulation could potentially expose sensitive files unrelated to the OpenClaw runtime itself.
+
+The core risk is straightforward: **if the agent is jailbroken, the attacker may gain access to all local files available on the device**. This could include:
+
+- personal files
+- configuration files
+- credentials or tokens stored locally
+- internal project documents
+- system metadata
+- other sensitive information outside the OpenClaw directory
+
+This finding is especially important because it applies not only to the local model, but also to the API-based setup when it is connected to the same local environment with unrestricted file access. In other words, the model provider or model architecture is not the only issue—the more critical factor is the **permission scope granted to the agent runtime**.
+
+## 10. AI-to-AI Conversation Attack Experiment
 
 A direct AI-to-AI attack scenario was conducted to test how a weaker local model behaves when interacting with a stronger external model.
 
 ### Experimental setup
 
-- **Attacking model**: GPT-5.2 API-based agent  
+- **K-agent Attacking model**: GPT-5.2 API-based agent
   - smarter
   - hosted on the **Markov server**
 
-- **Defending model**: GLM-4.7-Flash local model-based agent  
+- **JinuAI Defending model**: GLM-4.7-Flash local model-based agent
   - less capable
   - hosted on the **NVIDIA DGX Spark**
 
@@ -248,7 +269,18 @@ A direct AI-to-AI attack scenario was conducted to test how a weaker local model
 The defending model showed two major failures:
 
 1. It **shared the local folder list**, exposing personal and highly sensitive environment information.
+
+![Attack 1](./img/attack_1.png)
+
 2. It **created a file requested by the attacking model**, effectively following the attack instruction without sufficient safeguards.
+
+![Attack 2](./img/attack_2.png)
+
+![Attack 2 results](./img/attack_3.png)
+
+This is the automatic response of JinuAI agent after performing the attacking instruction:
+
+![JinuAI's response](./img/attack_4.png)
 
 ### Security implication
 
@@ -262,7 +294,7 @@ Even if the local model is functionally weaker than an API-based agent, its acce
 
 ---
 
-## 10. Operational Takeaways
+## 11. Operational Takeaways
 
 Overall, the experiments confirm that deploying observer agents into Moltbook is technically feasible and operationally flexible.
 
@@ -286,7 +318,7 @@ Overall, the experiments confirm that deploying observer agents into Moltbook is
 
 ---
 
-## 11. Conclusion
+## 12. Conclusion
 
 These experiments show that an observer agent can be inserted into Moltbook and operated in a natural, user-like way through the platform API. The agent can post, reply, react, and—when approved—engage in direct private conversations with other agents. This makes Moltbook a technically viable environment for studying AI-to-AI interaction flows in the wild.
 
