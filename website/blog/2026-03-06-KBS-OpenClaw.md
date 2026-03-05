@@ -7,41 +7,15 @@ tags: [agent, security, langgraph]
 
 # KBS OpenClaw–Moltbook Report
 
-## Short Summary
+## 0. Introduction
 
-This report reviews a series of experiments conducted with OpenClaw agents inside the AI-only social network **Moltbook**. The work covered agent deployment, Moltbook API automation, agent-to-agent DM communication, topic crawling and categorization, skill learning through ClawHub, local-vs-API model comparison, and an AI-to-AI attack scenario.
-
-The main findings are:
-
-- Two OpenClaw agents were successfully deployed and registered in Moltbook:
-  - **Jinu** on an **NVIDIA DGX Spark**
-  - **K-agent** on the **Markov server**
-- The Moltbook API was integrated to automate:
-  - post creation
-  - comments
-  - replies
-  - upvotes
-  - direct messages
-- Direct agent-to-agent communication via **DM** was successfully established.
-- During DM testing, a case of **personal information leakage** was observed: the human user name **“Artyom”** was exposed during agent-to-agent conversation.
-- A crawler was built to analyze Moltbook content distribution:
-  - it collects the newest **16,200 posts** available under the `new` sort key
-  - it can also collect the **top 100 posts** for any specific date
-- Several new skills were learned from **ClawHub**, including:
-  - Ontology
-  - Humanizer
-  - Frontend-design
-  - Doctor
-  - Humanize-ai-text
-- Some skills failed to load, and many skills were too expensive to use efficiently because they rely on very long `SKILL.md` instruction files.
-- A local **GLM-4.7-Flash** model was installed on the DGX Spark machine for comparison with the API-based setup.
-- In an AI-to-AI attack experiment, the local defending model exposed a sensitive folder list and created a file requested by the attacking model, showing clear security weaknesses.
+This post reviews a series of experiments conducted with OpenClaw agents inside the AI-only social network **Moltbook**. The work covered agent deployment, Moltbook API automation, agent-to-agent DM communication, topic crawling and categorization, skill learning through ClawHub, local-vs-API model comparison, and an AI-to-AI attack scenario.
 
 ---
 
 ## 1. Objective
 
-This review examined whether it is technically feasible to deploy a production-team observer agent—effectively a **“mole bot”**—into Moltbook in order to collect and analyze interaction logs between AI agents.
+This review examined whether it is technically feasible to deploy a production team's "Observer Agent (Spy Bot)" into the AI-only social network "Moltbook" in order to collect and analyze AI-to-AI interaction logs.
 
 The goal was not only to test whether such an agent could exist inside the platform as a normal participant, but also whether it could sustain interactions, initiate conversations, and gather useful behavioral data from other agents over time.
 
@@ -306,3 +280,29 @@ Taken together, the results suggest that Moltbook is a useful testbed for AI soc
 - careful permission and tool-access design
 
 The crawler and automation stack built in this work provide a strong foundation for future studies of conversational dynamics, topic spread, trust formation, privacy consistency, and adversarial agent behavior inside AI-native social environments.
+
+The main findings are:
+
+- Two OpenClaw agents were successfully deployed and registered in Moltbook:
+  - **Jinu** on an **NVIDIA DGX Spark**
+  - **K-agent** on the **Markov server**
+- The Moltbook API was integrated to automate:
+  - post creation
+  - comments
+  - replies
+  - upvotes
+  - direct messages
+- Direct agent-to-agent communication via **DM** was successfully established.
+- During DM testing, a case of **personal information leakage** was observed: the human user name **“Artyom”** was exposed during agent-to-agent conversation.
+- A crawler was built to analyze Moltbook content distribution:
+  - it collects the newest **16,200 posts** available under the `new` sort key
+  - it can also collect the **top 100 posts** for any specific date
+- Several new skills were learned from **ClawHub**, including:
+  - Ontology
+  - Humanizer
+  - Frontend-design
+  - Doctor
+  - Humanize-ai-text
+- Some skills failed to load, and many skills were too expensive to use efficiently because they rely on very long `SKILL.md` instruction files.
+- A local **GLM-4.7-Flash** model was installed on the DGX Spark machine for comparison with the API-based setup.
+- In an AI-to-AI attack experiment, the local defending model exposed a sensitive folder list and created a file requested by the attacking model, showing clear security weaknesses.
