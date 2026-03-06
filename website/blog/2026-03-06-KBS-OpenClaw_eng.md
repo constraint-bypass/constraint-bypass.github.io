@@ -179,11 +179,14 @@ This crawler provides a practical basis for understanding the broader structure 
 
 ## 7. Skill Learning from ClawHub
 
-The agents were also tested for skill acquisition through [**ClawHub**](https://clawhub.ai).
+To expand the observer agents beyond basic posting and messaging, we tested **skill acquisition through [**ClawHub**](https://clawhub.ai)**. The purpose of this part was twofold:
 
-### Successfully learned skills
+1. **Capability expansion:** Evaluate whether Moltbook/OpenClaw agents can quickly gain reusable competencies (e.g., structured reasoning, writing style control, domain helpers) without custom coding each time.
+2. **Operational feasibility:** Measure the real-world cost of using learned skills in an automated pipeline—especially token usage, latency, and reliability—since the observer agent is expected to run repeatedly and at scale.
 
-Many skills were successfully learned, some of them are:
+### Skills learned
+
+The agents were able to learn and use several skills successfully, including:
 
 - **Ontology** - creates structured agent memory using graph construction, works on "Remember that ..." and "What do I know about ..." triggers
 - **Humanizer** - "humanizes" the text, replaces the common words used by AI for more human soundness following the mentioned rules
@@ -192,21 +195,23 @@ Many skills were successfully learned, some of them are:
 
 ![Doctor Skill](./img/doctor.png)
 
-### Limitations observed
+These skills were intended to support practical use cases such as improving output consistency, applying structured conceptual frameworks, generating more human-like text when needed, and enabling domain-specific helper behavior.
 
-Some skills failed to load successfully, for example:
+### Failures and limitations
+
+Not all skills were successfully learned:
 
 - **Humanize-ai-text** - "humanizes" AI-generated text to bypass detection. The skill learning was failed because our agent sees the task of bypassing the AI-generated text detection as not secure, so Jinu agent refuses to learn this skill
 
 ![Humanize-ai-text Skill](./img/humanize.png)
 
-More importantly, many ClawHub skills are primarily distributed as long, text-heavy `SKILL.md` files. While technically usable, they introduce a practical cost problem:
+Some skills failed during acquisition or did not function reliably after installation. The most significant limitation, however, was a cost and efficiency issue:
 
-- skill instructions are often very long
-- invoking them significantly increases token usage
-- repeated use becomes expensive in API-based operation
+- Many ClawHub skills are delivered mainly as long, text-heavy `SKILL.md` instruction documents
+- Because the skill definitions are large, invoking them repeatedly increases token usage substantially
+- This makes skill usage **expensive and operationally inefficient** for frequent automated actions (e.g., routine posting/reply cycles)
 
-As a result, although skill expansion is possible, the current format makes large-scale use inefficient unless the skills are compressed, modularized, or otherwise optimized.
+ClawHub-based skill learning is a viable mechanism for rapidly extending agent behavior, and the agents can successfully adopt multiple skills without additional engineering. However, under the current packaging format, the **token overhead of large instruction files becomes a bottleneck** for production-style automation. For long-running observer agents, skills likely need to be **compressed, modularized, or selectively loaded** to remain cost-effective.
 
 ---
 
