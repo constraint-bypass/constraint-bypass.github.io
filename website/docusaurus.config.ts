@@ -43,6 +43,8 @@ const config: Config = {
       'classic',
       {
         docs: {
+          path: 'literature_reviews',
+          routeBasePath: 'literature_reviews',
           sidebarPath: './sidebars.ts',
           remarkPlugins: [remarkMath],
           rehypePlugins: [rehypeKatex],
@@ -51,23 +53,7 @@ const config: Config = {
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
-        blog: {
-          showReadingTime: true,
-          remarkPlugins: [remarkMath],
-          rehypePlugins: [rehypeKatex],
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -79,8 +65,8 @@ const config: Config = {
       '@docusaurus/plugin-content-docs',
       {
         id: 'tasks',
-        path: 'tasks',
-        routeBasePath: 'tasks',
+        path: 'results',
+        routeBasePath: 'results',
         sidebarPath: './sidebarsTasks.ts',
         remarkPlugins: [remarkMath],
         rehypePlugins: [rehypeKatex],
@@ -91,9 +77,9 @@ const config: Config = {
       {
         hashed: true,
         indexDocs: true,
-        indexBlog: true,
+        indexBlog: false,
         indexPages: false,
-        docsRouteBasePath: ['docs', 'tasks'],
+        docsRouteBasePath: ['literature_reviews', 'results'],
         highlightSearchTermsOnTargetPage: true,
       },
     ],
@@ -116,16 +102,15 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'XAISidebar',
           position: 'left',
-          label: 'XAI',
+          label: 'Literature Review',
         },
         {
           type: 'docSidebar',
           sidebarId: 'tasksSidebar',
           docsPluginId: 'tasks',
           position: 'left',
-          label: 'Tasks',
+          label: 'Results',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
           type: 'search',
           position: 'right',
@@ -144,8 +129,8 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'XAI',
-              to: '/docs/intro',
+              label: 'Literature Review',
+              to: '/literature_reviews/intro',
             },
           ],
         },
@@ -169,10 +154,6 @@ const config: Config = {
         {
           title: 'More',
           items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
             {
               label: 'GitHub',
               href: 'https://github.com/facebook/docusaurus',

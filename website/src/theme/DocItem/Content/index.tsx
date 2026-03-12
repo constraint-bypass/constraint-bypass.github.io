@@ -27,7 +27,7 @@ export default function DocItemContent({children}: Props): React.JSX.Element {
       : typeof dateValue === 'string'
         ? dateValue
         : null;
-  const isTaskDoc = metadata.permalink.startsWith('/tasks/');
+  const isTaskDoc = metadata.permalink.startsWith('/results/');
 
   return (
     <div className={clsx(ThemeClassNames.docs.docMarkdown, 'markdown')}>

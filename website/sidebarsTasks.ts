@@ -2,7 +2,7 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const tasksRoot = path.join(process.cwd(), 'tasks');
+const tasksRoot = path.join(process.cwd(), 'results');
 
 const versionPattern = /(\d{4})-(\d{2})-v(\d+)/i;
 

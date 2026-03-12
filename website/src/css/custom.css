@@ -154,7 +154,7 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-/* Wider header search input for docs/blog/tasks lookup. */
+/* Wider header search input for literature_reviews/results lookup. */
 .navbar__search-input {
   width: 22rem;
   max-width: 55vw;
