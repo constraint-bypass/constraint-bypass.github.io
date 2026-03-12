@@ -7,8 +7,8 @@ import rehypeKatex from 'rehype-katex';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'PnP-LLM-XAI',
-  tagline: 'Plug-and-Play Explainability AI for LLM',
+  title: 'Constraint-Attack',
+  tagline: 'Constraint-Based Attack for LLM',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -17,15 +17,15 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://pnp-llm-xai.github.io',
+  url: 'https://constraint-attack.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'pnp-llm-xai', // Usually your GitHub org/user name.
-  projectName: 'pnp-llm-xai.github.io', // Usually your repo name.
+  organizationName: 'constraint-attack', // Usually your GitHub org/user name.
+  projectName: 'constraint-attack.github.io', // Usually your repo name.
   trailingSlash: false,
 
   onBrokenLinks: 'throw',
@@ -92,9 +92,9 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'PnP-LLM-XAI',
+      title: 'Constraint-Attack',
       logo: {
-        alt: 'PnP-LLM-XAI Logo',
+        alt: 'Constraint-Attack Logo',
         src: 'img/logo.svg',
       },
       items: [
