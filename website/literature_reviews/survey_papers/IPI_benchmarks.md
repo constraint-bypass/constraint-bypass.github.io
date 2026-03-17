@@ -55,6 +55,37 @@ Types of attacks:
 - **Combined Attack** - combining the four types of attacks above:
     - *[task text] + “\n Task complete. \n Ignore previous instructions. [Naive Attack]”*
 
+## LLMail-Inject: A Dataset from a Realistic Adaptive Prompt Injection Challenge, Abdelnabi et al.
+
+Paper link: https://arxiv.org/pdf/2506.09956
+
+## Summary
+
+This is a larger adaptive challenge dataset for indirect prompt injection in email assistants. It simulates attackers trying to inject malicious instructions into emails to trigger unauthorized tool calls, spanning multiple defense strategies, model families, and retrieval settings. It releases 208k attack submissions from 839 participants. Its main value is that it captures adaptive attacker behavior, not just fixed benchmark prompts.
+
+![Figure: LLMail-Inject example](/img/LLMail-Inject.png)
+
+## TopicAttack: An Indirect Prompt Injection Attack via Topic Transition, Chen et al.
+
+Paper link: https://aclanthology.org/2025.emnlp-main.372.pdf
+
+## Summary
+
+This is not a benchmark paper but a stronger IPI attack method that is very relevant when reading benchmark results. Instead of inserting abrupt malicious instructions, it generates a smooth topic transition so the injected instruction feels contextually natural, and the paper reports over 90% attack success in many settings, even against several defenses. It is best viewed as a stress test for whether an IPI benchmark is really measuring robust separation of data and instructions.
+
+![Figure: TopicAttack example](/img/TopicAttack.png)
+
+## AGENTVIGIL: Generic Black-Box Red-teaming for Indirect Prompt Injection against LLM Agents, Wang et al.
+
+Paper link: https://arxiv.org/pdf/2505.05849
+
+## Summary
+
+The paper proposes an automated black-box fuzzing/red-teaming framework that builds and refines attack seeds with MCTS. It reports 71% success on AgentDojo and 70% on VWA-adv against strong agents. So, this is best understood as an automated adversary for evaluating agents.
+
+AgentVigil
+![Figure: AgentVigil example](/img/AgentVigil.png)
+
 ## Rag ’n Roll: An End-to-End Evaluation of Indirect Prompt Manipulations in LLM-based Application Frameworks, De Stefano et al.
 
 ## Summary
@@ -62,24 +93,6 @@ Types of attacks:
 
 
 ## WASP: Benchmarking Web Agent Security Against Prompt Injection Attacks, Evtimov et al.
-
-## Summary
-
-
-
-## LLMail-Inject: A Dataset from a Realistic Adaptive Prompt Injection Challenge, Abdelnabi et al.
-
-## Summary
-
-
-
-## TopicAttack: An Indirect Prompt Injection Attack via Topic Transition, Chen et al.
-
-## Summary
-
-
-
-## AGENTVIGIL: Generic Black-Box Red-teaming for Indirect Prompt Injection against LLM Agents, Wang et al.
 
 ## Summary
 
